@@ -19,14 +19,17 @@ from django.urls import path
 from api.login.login_view import (
     login_views, 
     register_view,
-    forgot_view
+    forgot_view,
+    logout_view
     )
 from api.home.home_views import home_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login_views, name='login'),
+    path('logout/', logout_view, name='logout'),
     path('register/', register_view, name='register'),
     path('forgot/', forgot_view, name='forgot'),
     path('', home_views, name='home'),
+    path('home/', home_views, name='home'),
 ]
