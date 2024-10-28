@@ -7,15 +7,22 @@ from django.contrib.auth.decorators import login_required
 #view for Login
 def login_views(request):
     template_name = "auth-login.html"
+    
+    if request.user.is_authenticated:
+        return redirect('home')
+    
     if request.method == 'POST':
-        username = request.POST['email']
+        print("Entro")
+        username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, email=username, password=password)
+        user = authenticate(request, username, password=password)
         
+        print(username,password)
         if user is not None:
             login(request, user)
             return redirect('home')
         else:
+            print("Error")
             return render(request, template_name, {'error': 'Credenciales inválidas'})
     return render(request, template_name)
 
