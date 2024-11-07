@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from api.home.value_const import login_url
 
 # Create your views here.
 @login_required(login_url='/login')
-
 def home_views(request):
     template_name = "index.html"
     
